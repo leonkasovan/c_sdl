@@ -1,2 +1,2 @@
 all:
-	gcc `sdl2-config --cflags` -o test_input test_input.c -LC:/msys64/mingw64/lib -lmingw32 -lSDL2main -lSDL2
+	gcc `sdl2-config --cflags` `sdl2-config --libs` -o test_input test_input.c -lSDL2main -lSDL2
