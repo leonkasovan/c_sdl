@@ -3,7 +3,7 @@ Simple SDL 1.2 for RG35xx
 using SDL_CreateRGBSurface
 */
 #include <SDL/SDL.h>
-
+void putpixel(SDL_Surface* surface, int x, int y, Uint32 pixel);
 int main(int argc, char* argv[]) {
     // Initialize SDL
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -19,7 +19,8 @@ int main(int argc, char* argv[]) {
     }
 
     // Create an RGB surface
-    SDL_Surface* rgbSurface = SDL_CreateRGBSurface(SDL_HWSURFACE, 320, 240, 32, 0xFF0000, 0x00FF00, 0x0000FF, 0);
+    SDL_Surface* rgbSurface = SDL_CreateRGBSurface(SDL_HWSURFACE, 320, 240, 32, 0xFF0000, 0x000000, 0x000000, 0);
+    // SDL_Surface* rgbSurface = SDL_CreateRGBSurface(SDL_HWSURFACE, 320, 240, 16, 0, 0, 0, 0);
 
     if (!rgbSurface) {
         fprintf(stderr, "SDL_CreateRGBSurface failed: %s\n", SDL_GetError());
@@ -29,14 +30,16 @@ int main(int argc, char* argv[]) {
     // Draw a simple pattern on the RGB surface
     for (int y = 0; y < 240; y++) {
         for (int x = 0; x < 320; x++) {
-            Uint32 pixelColor = SDL_MapRGB(rgbSurface->format, 255, x % 255, y % 255);
+            // Uint32 pixelColor = SDL_MapRGB(rgbSurface->format, (x+y) % 255, x % 255, y % 255);
+            Uint32 pixelColor = SDL_MapRGB(rgbSurface->format, 255, 255, 255);
             putpixel(rgbSurface, x, y, pixelColor);
         }
     }
 
     // Blit the RGB surface onto the screen
-    SDL_Rect destRect = { 160, 120, 0, 0 };
-    SDL_BlitSurface(rgbSurface, NULL, screen, &destRect);
+    // SDL_Rect destRect = { 0, 0, 100, 100 };
+    // SDL_BlitSurface(rgbSurface, NULL, screen, &destRect);
+    SDL_BlitSurface(rgbSurface, NULL, screen, NULL);
 
     // Update the screen
     SDL_Flip(screen);
