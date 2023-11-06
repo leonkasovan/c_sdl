@@ -121,9 +121,9 @@ int main(int argc, char* argv[]) {
         }
 
         // Check the state of axis 0 (X-axis)
-        Sint16 xAxis = SDL_JoystickGetAxis(joystick, 0);
+        Sint16 xAxis = SDL_JoystickGetAxis(joystick, 2);
         // Check the state of axis 1 (Y-axis)
-        Sint16 yAxis = SDL_JoystickGetAxis(joystick, 1);
+        Sint16 yAxis = SDL_JoystickGetAxis(joystick, 5);
         snprintf(text_message3, TEXT_LENGTH, "X-Axis: %d, Y-Axis: %d", xAxis, yAxis);
         
         SDL_FillRect(backbuffer, NULL, SDL_MapRGB(backbuffer->format, 0, 0, 0)); // Clear the backbuffer with black.
